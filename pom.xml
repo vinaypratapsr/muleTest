@@ -32,7 +32,7 @@
 						<environment>Sandbox</environment>
 						<workers>1</workers>
 						<workerType>Micro</workerType>
-						<applicationName>PaypalSystemapi</applicationName>
+						<applicationName>PaypalSystemapi12345</applicationName>
 						<password>Mulelearner@123</password>
 						<muleVersion>4.2.2</muleVersion>
 						<objectStoreV2>true</objectStoreV2>
