@@ -27,12 +27,12 @@
 				<extensions>true</extensions>
 				<configuration>
 					<cloudHubDeployment>
-						<username>vinaypratapsingh</username>
-						<environment>Sandbox</environment>
-						<workers>1</workers>
-						<workerType>Micro</workerType>
-						<applicationName>PaypalSystemapi12345</applicationName>
-						<password>Mulelearner@123</password>
+						<username>${username}</username>
+						<environment>${environment}</environment>
+						<workers>${workers}</workers>
+						<workerType>${worker.type}</workerType>
+						<applicationName>${application.name}</applicationName>
+						<password>${password}</password>
 						<muleVersion>4.2.2</muleVersion>
 						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
