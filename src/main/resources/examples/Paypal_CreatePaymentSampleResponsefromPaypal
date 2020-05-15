@@ -1,0 +1,75 @@
+{
+    "id": "PAYID-L2XJEGQ3A742758N50964149",
+    "intent": "sale",
+    "state": "created",
+    "payer": {
+        "payment_method": "paypal"
+    },
+    "transactions": [
+        {
+            "amount": {
+                "total": "30.11",
+                "currency": "USD",
+                "details": {
+                    "subtotal": "30.00",
+                    "tax": "0.07",
+                    "shipping": "0.03",
+                    "insurance": "0.01",
+                    "handling_fee": "1.00",
+                    "shipping_discount": "-1.00"
+                }
+            },
+            "description": "This is the payment transaction description.",
+            "custom": "EBAY_EMS_90048630024435",
+            "invoice_number": "48787589673",
+            "soft_descriptor": "ECHI5786786",
+            "payment_options": {
+                "allowed_payment_method": "INSTANT_FUNDING_SOURCE",
+                "recurring_flag": false,
+                "skip_fmf": false
+            },
+            "item_list": {
+                "items": [
+                    {
+                        "name": "hat",
+                        "sku": "1",
+                        "description": "Brown color hat",
+                        "price": "3.00",
+                        "currency": "USD",
+                        "tax": "0.01",
+                        "quantity": 5
+                    },
+                    {
+                        "name": "handbag",
+                        "sku": "product34",
+                        "description": "Black color hand bag",
+                        "price": "15.00",
+                        "currency": "USD",
+                        "tax": "0.02",
+                        "quantity": 1
+                    }
+                ]
+            },
+            "related_resources": []
+        }
+    ],
+    "note_to_payer": "Contact us for any questions on your order.",
+    "create_time": "2020-05-03T09:42:49Z",
+    "links": [
+        {
+            "href": "https://api.sandbox.paypal.com/v1/payments/payment/PAYID-L2XJEGQ3A742758N50964149",
+            "rel": "self",
+            "method": "GET"
+        },
+        {
+            "href": "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-77266540KU769615T",
+            "rel": "approval_url",
+            "method": "REDIRECT"
+        },
+        {
+            "href": "https://api.sandbox.paypal.com/v1/payments/payment/PAYID-L2XJEGQ3A742758N50964149/execute",
+            "rel": "execute",
+            "method": "POST"
+        }
+    ]
+}

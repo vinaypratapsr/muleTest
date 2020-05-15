@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="PaypalAccessTokenResponse" format="json">
+      <types:shape format="weave" example="examples/AccessTokenResponseJSONSamplePaypal"><![CDATA[%dw 2.0
+
+type PaypalAccessTokenResponse = {|
+  scope: String, 
+  access_token: String, 
+  token_type: String, 
+  app_id: String, 
+  expires_in: Number {"typeId": "int"}, 
+  nonce: String
+|} {"example": "{\\\"scope\\\":\\\"https:\\/\\/uri.paypal.com\\/services\\/invoicing https:\\/\\/uri.paypal.com\\/services\\/disputes\\/read-buyer https:\\/\\/uri.paypal.com\\/services\\/payments\\/realtimepayment https:\\/\\/uri.paypal.com\\/services\\/disputes\\/update-seller https:\\/\\/uri.paypal.com\\/services\\/payments\\/payment\\/authcapture openid https:\\/\\/uri.paypal.com\\/services\\/disputes\\/read-seller https:\\/\\/uri.paypal.com\\/services\\/payments\\/refund https:\\/\\/api.paypal.com\\/v1\\/vault\\/credit-card https:\\/\\/api.paypal.com\\/v1\\/payments\\/.* https:\\/\\/uri.paypal.com\\/payments\\/payouts https:\\/\\/api.paypal.com\\/v1\\/vault\\/credit-card\\/.* https:\\/\\/uri.paypal.com\\/services\\/subscriptions https:\\/\\/uri.paypal.com\\/services\\/applications\\/webhooks\\\",\\\"access_token\\\":\\\"A21AAH3odbNnUz6-HuBnpuCCrlwUgA5IZdpWPW_jpZlJ02QQ0MlM-U7RUI9DxyIdt9E1J0Jl2wjXkZuZSxQFI_I-Bg4BOVQQA\\\",\\\"token_type\\\":\\\"Bearer\\\",\\\"app_id\\\":\\\"APP-80W284485P519543T\\\",\\\"expires_in\\\":32356,\\\"nonce\\\":\\\"2020-05-03T09:16:52ZnrPHOKF6-IHrSLRwjP3Y8Nm2pPxNXxCoXfsc79nvUCM\\\"}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="OauthSysmtemAPIResponse" format="json">
+      <types:shape format="weave" example="examples/AccessTokenResponseSystemAPIPaypal"><![CDATA[%dw 2.0
+
+type OauthSysmtemAPIResponse = {| AccessToken: String |} {"example": "{\\\"AccessToken\\\":\\\"123\\\"}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="CreatePaymentResponseFromPaypal" format="json">
+      <types:shape format="weave" example="examples/Paypal_CreatePaymentSampleResponsefromPaypal"><![CDATA[%dw 2.0
+
+type CreatePaymentResponseFromPaypal = {|
+  id: String, 
+  intent: String, 
+  state: String, 
+  payer: {| payment_method: String |}, 
+  transactions: Array<{|    amount: {|      total: String,       currency: String,       details: {|        subtotal: String,         tax: String,         shipping: String,         insurance: String,         handling_fee: String,         shipping_discount: String      |}    |},     description: String,     custom: String,     invoice_number: String,     soft_descriptor: String,     payment_options: {|      allowed_payment_method: String,       recurring_flag: Boolean,       skip_fmf: Boolean    |},     item_list: {|      items: Array<{|        name: String,         sku: String,         description: String,         price: String,         currency: String,         tax: String,         quantity: Number {"typeId": "int"}      |}>
+    |}, 
+    related_resources: Array<Any>
+  |}>, 
+  note_to_payer: String, 
+  create_time: String, 
+  links: Array<{|    href: String,     rel: String,     method: String  |}>
+|} {"example": "{\\\"id\\\":\\\"PAYID-L2XJEGQ3A742758N50964149\\\",\\\"intent\\\":\\\"sale\\\",\\\"state\\\":\\\"created\\\",\\\"payer\\\":{\\\"payment_method\\\":\\\"paypal\\\"},\\\"transactions\\\":[{\\\"amount\\\":{\\\"total\\\":\\\"30.11\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"30.00\\\",\\\"tax\\\":\\\"0.07\\\",\\\"shipping\\\":\\\"0.03\\\",\\\"insurance\\\":\\\"0.01\\\",\\\"handling_fee\\\":\\\"1.00\\\",\\\"shipping_discount\\\":\\\"-1.00\\\"}},\\\"description\\\":\\\"This is the payment transaction description.\\\",\\\"custom\\\":\\\"EBAY_EMS_90048630024435\\\",\\\"invoice_number\\\":\\\"48787589673\\\",\\\"soft_descriptor\\\":\\\"ECHI5786786\\\",\\\"payment_options\\\":{\\\"allowed_payment_method\\\":\\\"INSTANT_FUNDING_SOURCE\\\",\\\"recurring_flag\\\":false,\\\"skip_fmf\\\":false},\\\"item_list\\\":{\\\"items\\\":[{\\\"name\\\":\\\"hat\\\",\\\"sku\\\":\\\"1\\\",\\\"description\\\":\\\"Brown color hat\\\",\\\"price\\\":\\\"3.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"tax\\\":\\\"0.01\\\",\\\"quantity\\\":5},{\\\"name\\\":\\\"handbag\\\",\\\"sku\\\":\\\"product34\\\",\\\"description\\\":\\\"Black color hand bag\\\",\\\"price\\\":\\\"15.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"tax\\\":\\\"0.02\\\",\\\"quantity\\\":1}]},\\\"related_resources\\\":[]}],\\\"note_to_payer\\\":\\\"Contact us for any questions on your order.\\\",\\\"create_time\\\":\\\"2020-05-03T09:42:49Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-L2XJEGQ3A742758N50964149\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"},{\\\"href\\\":\\\"https:\\/\\/www.sandbox.paypal.com\\/cgi-bin\\/webscr?cmd=_express-checkout&token=EC-77266540KU769615T\\\",\\\"rel\\\":\\\"approval_url\\\",\\\"method\\\":\\\"REDIRECT\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-L2XJEGQ3A742758N50964149\\/execute\\\",\\\"rel\\\":\\\"execute\\\",\\\"method\\\":\\\"POST\\\"}]}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="PaypalApprovalPutRequest" format="json">
+      <types:shape format="weave" example="examples/Paypal_ApprovalPutRequest"><![CDATA[%dw 2.0
+
+type PaypalApprovalPutRequest = {| payerID: String |} {"example": "{\\\"payerID\\\":\\\"ZPPP67EQKKDGA\\\"}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="PaypalExecutePostRequest" format="json">
+      <types:shape format="weave" example="examples/Paypal_ExecutePaypalRequest"><![CDATA[%dw 2.0
+
+type PaypalExecutePostRequest = {| payer_id: String |} {"example": "{\\\"payer_id\\\":\\\"ZPPP67EQKKDGA\\\"}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="PayPal1stCallResponse" format="json">
+      <types:shape format="weave" example="examples/PayPal1stCallResponseSample"><![CDATA[%dw 2.0
+
+type PayPal1stCallResponse = {|
+  id: String, 
+  intent: String, 
+  state: String, 
+  payer: {| payment_method: String |}, 
+  transactions: Array<{|    amount: {|      total: String,       currency: String,       details: {|        subtotal: String,         tax: String,         shipping: String,         insurance: String,         handling_fee: String,         shipping_discount: String      |}    |},     description: String,     custom: String,     invoice_number: String,     soft_descriptor: String,     payment_options: {|      allowed_payment_method: String,       recurring_flag: Boolean,       skip_fmf: Boolean    |},     item_list: {|      items: Array<{|        name: String,         sku: String,         description: String,         price: String,         currency: String,         tax: String,         quantity: Number {"typeId": "int"}      |}>
+    |}, 
+    related_resources: Array<Any>
+  |}>, 
+  note_to_payer: String, 
+  create_time: String, 
+  links: Array<{|    href: String,     rel: String,     method: String  |}>
+|} {"example": "{\\\"id\\\":\\\"PAYID-L2ZEI7Y2W3683818G916005K\\\",\\\"intent\\\":\\\"sale\\\",\\\"state\\\":\\\"created\\\",\\\"payer\\\":{\\\"payment_method\\\":\\\"paypal\\\"},\\\"transactions\\\":[{\\\"amount\\\":{\\\"total\\\":\\\"30.11\\\",\\\"currency\\\":\\\"USD\\\",\\\"details\\\":{\\\"subtotal\\\":\\\"30.00\\\",\\\"tax\\\":\\\"0.07\\\",\\\"shipping\\\":\\\"0.03\\\",\\\"insurance\\\":\\\"0.01\\\",\\\"handling_fee\\\":\\\"1.00\\\",\\\"shipping_discount\\\":\\\"-1.00\\\"}},\\\"description\\\":\\\"This is the payment transaction description.\\\",\\\"custom\\\":\\\"EBAY_EMS_90048630024435\\\",\\\"invoice_number\\\":\\\"4878758967222222\\\",\\\"soft_descriptor\\\":\\\"ECHI5786786\\\",\\\"payment_options\\\":{\\\"allowed_payment_method\\\":\\\"INSTANT_FUNDING_SOURCE\\\",\\\"recurring_flag\\\":false,\\\"skip_fmf\\\":false},\\\"item_list\\\":{\\\"items\\\":[{\\\"name\\\":\\\"hat\\\",\\\"sku\\\":\\\"1\\\",\\\"description\\\":\\\"Brown color hat\\\",\\\"price\\\":\\\"3.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"tax\\\":\\\"0.01\\\",\\\"quantity\\\":5},{\\\"name\\\":\\\"handbag\\\",\\\"sku\\\":\\\"product34\\\",\\\"description\\\":\\\"Black color hand bag\\\",\\\"price\\\":\\\"15.00\\\",\\\"currency\\\":\\\"USD\\\",\\\"tax\\\":\\\"0.02\\\",\\\"quantity\\\":1}]},\\\"related_resources\\\":[]}],\\\"note_to_payer\\\":\\\"Contact us for any questions on your order.\\\",\\\"create_time\\\":\\\"2020-05-06T05:00:47Z\\\",\\\"links\\\":[{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-L2ZEI7Y2W3683818G916005K\\\",\\\"rel\\\":\\\"self\\\",\\\"method\\\":\\\"GET\\\"},{\\\"href\\\":\\\"https:\\/\\/www.sandbox.paypal.com\\/cgi-bin\\/webscr?cmd=_express-checkout&token=EC-2N5274694A363305U\\\",\\\"rel\\\":\\\"approval_url\\\",\\\"method\\\":\\\"REDIRECT\\\"},{\\\"href\\\":\\\"https:\\/\\/api.sandbox.paypal.com\\/v1\\/payments\\/payment\\/PAYID-L2ZEI7Y2W3683818G916005K\\/execute\\\",\\\"rel\\\":\\\"execute\\\",\\\"method\\\":\\\"POST\\\"}]}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="PayPal1stCallResponseSample" format="json">
+      <types:shape format="weave" example="examples/Paypal1stCallSystemAPIResponseSample"><![CDATA[%dw 2.0
+
+type PayPal1stCallResponseSample = {|
+  paymentID: String, 
+  ApprovalLink: String
+|} {"example": "{\\\"paymentID\\\":\\\"123\\\",\\\"ApprovalLink\\\":\\\"ABC\\\"}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#41cb01d0-0759-4186-8e9d-6b89831e9aa4">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="PaypalAccessTokenResponse"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="OauthSysmtemAPIResponse"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#3b708bee-a9bc-418f-a506-2af54f5f2d9c">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="CreatePaymentResponseFromPaypal"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#38138326-c467-41d1-9a60-ae2cfe34d034">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="PayPal1stCallResponse"/>
+        </types:message>
+      </types:input-event>
+      <types:output-event>
+        <types:message>
+          <types:payload type="PayPal1stCallResponseSample"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

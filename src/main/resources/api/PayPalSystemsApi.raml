@@ -1,0 +1,57 @@
+#%RAML 1.0
+title: PayPalSystemsApi
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/0f7a64ff-b376-44f9-8610-d4a85a1ae528/payments
+description: API can be used to create and execute a PayPal Payment
+mediaType:
+  - application/json
+version: "1"
+protocols:
+  - HTTPS
+/{PaymentId}/approval:
+  put:
+    body:
+      example:
+        strict: true
+        value:
+          payerID: "1234"
+      type: object
+    responses:
+      "200": {}
+  uriParameters:
+    PaymentId:
+      example: PAY-12345678
+      type: string
+securedBy: []
+/payment:
+  post:
+    headers:
+      Authorization?:
+        example: Bearer <token>
+        type: string
+    body:
+      example:
+        strict: true
+        value:
+          description: Payments for Bag
+          amount: "5000"
+      type: object
+    responses:
+      "200":
+        body:
+          example:
+            strict: true
+            value:
+              paymentId: PAY-123456789
+          type: object
+    securedBy: []
+/oauth2/token:
+  post:
+    body: {}
+    responses:
+      "200":
+        body:
+          example:
+            strict: true
+            value:
+              AccessToken: token
+          type: object
