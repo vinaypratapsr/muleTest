@@ -35,6 +35,7 @@
 						<applicationName>Paypal-systemapi</applicationName>
 						<password>Mulelearner@123</password>
 						<muleVersion>4.2.2</muleVersion>
+						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
 				</configuration>
 			</plugin>
