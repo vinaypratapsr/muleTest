@@ -29,12 +29,12 @@
 				<configuration>
 				<cloudHubDeployment>
 				<username>vinaypratapsingh</username>
-				<password>Kuchnahi@123</password>
 				<environment>Sandbox</environment>
-				<applicationName>Paypal-systemapi</applicationName>
-				<muleVersion>4.1.4</muleVersion>
 				<workers>1</workers>
 				<workerType>Micro</workerType>
+				<applicationName>Paypal-systemapi</applicationName>
+				<password>Kuchnahi@123</password>
+				<muleVersion>4.2.2</muleVersion>
 				</cloudHubDeployment>
 				</configuration>
 			</plugin>
