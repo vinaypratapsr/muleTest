@@ -33,7 +33,7 @@
 				<workers>1</workers>
 				<workerType>Micro</workerType>
 				<applicationName>Paypal-systemapi</applicationName>
-				<password>Kuchnahi@123</password>
+				<password>Mulelearner@123</password>
 				<muleVersion>4.2.2</muleVersion>
 				</cloudHubDeployment>
 				</configuration>
